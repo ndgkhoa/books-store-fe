@@ -7,6 +7,7 @@ import {
 } from 'react-icons/hi2'
 import { IoSearchOutline } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
+import avatarImg from '../assets/avatar.png'
 
 const navigation = [
     { name: 'Dashboard', href: '/dashboard' },
@@ -45,7 +46,7 @@ const Navbar = () => {
                                     }
                                 >
                                     <img
-                                        src="/assets/avatar.png"
+                                        src={avatarImg}
                                         alt=""
                                         className={`size-7 rounded-full ${currentUser ? 'ring-2 ring-blue-500' : ''}`}
                                     />
