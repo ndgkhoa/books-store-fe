@@ -4,9 +4,8 @@ import { getImgUrl } from '../../utils/getImgUrl'
 import { clearCart, removeFromCart } from '../../redux/features/cart/cartSlice'
 
 const CartPage = () => {
-    const cartItems = useSelector((state) => state.cart.cartItems)
     const dispatch = useDispatch()
-
+    const cartItems = useSelector((state) => state.cart.cartItems)
     const totalPrice = cartItems
         .reduce((acc, item) => acc + item.newPrice, 0)
         .toFixed(2)
