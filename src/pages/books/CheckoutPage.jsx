@@ -2,14 +2,15 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 
 const CheckoutPage = () => {
+    const { currentUser } = useAuth()
     const [isChecked, setIsChecked] = useState(false)
     const cartItems = useSelector((state) => state.cart.cartItems)
     const totalPrice = cartItems
         .reduce((acc, item) => acc + item.newPrice, 0)
         .toFixed(2)
-
     const {
         register,
         handleSubmit,
@@ -31,10 +32,8 @@ const CheckoutPage = () => {
             productIds: cartItems.map((item) => item?._id),
             totalPrice: totalPrice,
         }
-        console.log(newOrder)
     }
 
-    const currentUser = true
     return (
         <section>
             <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
