@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+import { useCreateOrderMutation } from '../../redux/features/orders/ordersApi'
+import Swal from 'sweetalert2'
 
 const CheckoutPage = () => {
     const { currentUser } = useAuth()
     const [isChecked, setIsChecked] = useState(false)
+    const [createOrder, { isLoading }] = useCreateOrderMutation()
+    const navigate = useNavigate()
     const cartItems = useSelector((state) => state.cart.cartItems)
     const totalPrice = cartItems
         .reduce((acc, item) => acc + item.newPrice, 0)
@@ -18,7 +22,7 @@ const CheckoutPage = () => {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         const newOrder = {
             name: data.name,
             email: currentUser?.email,
@@ -32,7 +36,26 @@ const CheckoutPage = () => {
             productIds: cartItems.map((item) => item?._id),
             totalPrice: totalPrice,
         }
+
+        try {
+            await createOrder(newOrder).unwrap()
+            Swal.fire({
+                title: 'Confirmed Order',
+                text: 'Your order placed successfully!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: "Yes, It's Okay!",
+            })
+            navigate('/orders')
+        } catch (error) {
+            console.error('Error place an order', error)
+            alert('Failed to place an order')
+        }
     }
+
+    if (isLoading) return <div>Loading...</div>
 
     return (
         <section>
@@ -71,6 +94,9 @@ const CheckoutPage = () => {
                                                 Full Name
                                             </label>
                                             <input
+                                                {...register('name', {
+                                                    required: true,
+                                                })}
                                                 type="text"
                                                 name="name"
                                                 id="name"
@@ -99,6 +125,9 @@ const CheckoutPage = () => {
                                                 Phone Number
                                             </label>
                                             <input
+                                                {...register('phone', {
+                                                    required: true,
+                                                })}
                                                 type="number"
                                                 name="phone"
                                                 id="phone"
@@ -112,6 +141,9 @@ const CheckoutPage = () => {
                                                 Address / Street
                                             </label>
                                             <input
+                                                {...register('address', {
+                                                    required: true,
+                                                })}
                                                 type="text"
                                                 name="address"
                                                 id="address"
@@ -123,6 +155,9 @@ const CheckoutPage = () => {
                                         <div className="md:col-span-2">
                                             <label htmlFor="city">City</label>
                                             <input
+                                                {...register('city', {
+                                                    required: true,
+                                                })}
                                                 type="text"
                                                 name="city"
                                                 id="city"
@@ -137,6 +172,9 @@ const CheckoutPage = () => {
                                             </label>
                                             <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
                                                 <input
+                                                    {...register('country', {
+                                                        required: true,
+                                                    })}
                                                     name="country"
                                                     id="country"
                                                     placeholder="Country"
@@ -194,6 +232,9 @@ const CheckoutPage = () => {
                                             </label>
                                             <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
                                                 <input
+                                                    {...register('state', {
+                                                        required: true,
+                                                    })}
                                                     name="state"
                                                     id="state"
                                                     placeholder="State"
@@ -247,6 +288,9 @@ const CheckoutPage = () => {
                                                 Zipcode
                                             </label>
                                             <input
+                                                {...register('zipcode', {
+                                                    required: true,
+                                                })}
                                                 type="text"
                                                 name="zipcode"
                                                 id="zipcode"
