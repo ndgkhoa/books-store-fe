@@ -10,6 +10,11 @@ import PrivateRoute from './PrivateRoute'
 import OrderPage from '../pages/books/OrderPage'
 import AdminRoute from './AdminRoute'
 import AdminLogin from '../components/AdminLogin'
+import DashboardLayout from '../pages/dashboard/DashboardLayout'
+import Dashboard from '../pages/dashboard/Dashboard'
+import AddBook from '../pages/dashboard/addBook/AddBook'
+import ManageBooks from '../pages/dashboard/manageBooks/ManageBooks'
+import EditBook from '../pages/dashboard/editBook/EditBook'
 
 const router = createBrowserRouter([
     {
@@ -66,7 +71,7 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: (
             <AdminRoute>
-                <div>Dashboard</div>
+                <DashboardLayout />
             </AdminRoute>
         ),
         children: [
@@ -74,7 +79,7 @@ const router = createBrowserRouter([
                 path: '',
                 element: (
                     <AdminRoute>
-                        <div>Dashboard Home</div>
+                        <Dashboard />
                     </AdminRoute>
                 ),
             },
@@ -82,7 +87,7 @@ const router = createBrowserRouter([
                 path: 'add-new-book',
                 element: (
                     <AdminRoute>
-                        <div>add-new-book</div>
+                        <AddBook />
                     </AdminRoute>
                 ),
             },
@@ -90,7 +95,7 @@ const router = createBrowserRouter([
                 path: 'edit-book/:id',
                 element: (
                     <AdminRoute>
-                        <div>edit-book</div>
+                        <EditBook />
                     </AdminRoute>
                 ),
             },
@@ -98,7 +103,7 @@ const router = createBrowserRouter([
                 path: 'manage-books',
                 element: (
                     <AdminRoute>
-                        <div>manage-books</div>
+                        <ManageBooks />
                     </AdminRoute>
                 ),
             },
