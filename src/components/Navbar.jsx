@@ -99,16 +99,13 @@ const Navbar = () => {
                     </button>
                     <Link
                         to="/cart"
-                        className="bg-primary p-1 sm:px-6 px-1 flex items-center rounded-sm"
+                        className="relative bg-accent p-2 sm:px-6 px-3 flex items-center rounded-sm"
                     >
-                        <HiOutlineShoppingCart />
-                        {cartItems.length > 0 ? (
-                            <span className="text-sm font-semibold sm:ml-1">
+                        <HiOutlineShoppingCart className="text-white text-xl" />
+
+                        {cartItems.length > 0 && (
+                            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                                 {cartItems.length}
-                            </span>
-                        ) : (
-                            <span className="text-sm font-semibold sm:ml-1">
-                                0
                             </span>
                         )}
                     </Link>

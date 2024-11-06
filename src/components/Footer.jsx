@@ -1,5 +1,3 @@
-import footerLogo from '../assets/footer-logo.png'
-
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa'
 
 const Footer = () => {
@@ -7,7 +5,6 @@ const Footer = () => {
         <footer className="bg-gray-900 text-white py-10 px-4">
             <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
                 <div className="md:w-1/2 w-full">
-                    <img src={footerLogo} alt="Logo" className="mb-5 w-36" />
                     <ul className="flex flex-col md:flex-row gap-4">
                         <li>
                             <a href="#home" className="hover:text-primary">
@@ -41,9 +38,9 @@ const Footer = () => {
                         <input
                             type="email"
                             placeholder="Enter your email"
-                            className="w-full px-4 py-2 rounded-l-md text-black"
+                            className="w-[60%] px-4 py-2 rounded-l-md text-black"
                         />
-                        <button className="bg-primary px-6 py-2 rounded-r-md hover:bg-primary-dark">
+                        <button className="bg-accent px-6 py-2 rounded-r-md hover:bg-accent-dark transition-colors duration-300">
                             Subscribe
                         </button>
                     </div>

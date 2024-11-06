@@ -13,8 +13,9 @@ export default {
             colors: {
                 primary: '#FFCE1A',
                 secondary: '#0D0842',
-                blackBG: '#F3F3F3',
-                Favorite: '#FF5841',
+                favorite: '#FF5841',
+                accent: '#D4AF37',
+                'accent-dark': '#B37E00',
             },
             fontFamily: {
                 primary: ['Montserrat', 'sans-serif'],

@@ -1,5 +1,5 @@
 const getBaseUrl = () => {
-    return process.env.VITE_BASE_URL || 'http://localhost:5000'
+    return 'https://books-store-be-seven.vercel.app'
 }
 
 export default getBaseUrl
